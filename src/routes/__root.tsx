@@ -1,14 +1,12 @@
 // src/routes/__root.tsx
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import Navbar from "@/components/Navbar";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 
 export const Route = createRootRoute({
   component: () => (
     <>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav>
+      <Navbar />
       <Outlet /> {/* child routes render here */}
       <TanStackRouterDevtools />
     </>
