@@ -15,7 +15,6 @@ function RootComponent() {
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(async (position) => {
       const { latitude, longitude } = position.coords;
-      console.log(latitude, longitude);
 
       const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
 
@@ -27,7 +26,9 @@ function RootComponent() {
           country: data.address.country,
           state: data.address.state,
         });
-      } catch (error) {}
+      } catch (error) {
+        console.error("Error fetching location data:", error);
+      }
     });
   };
 
