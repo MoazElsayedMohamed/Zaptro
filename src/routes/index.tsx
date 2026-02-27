@@ -1,5 +1,6 @@
 // src/routes/index.tsx
 import Category from "@/components/Category";
+import MidBanner from "@/components/MidBanner";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -83,6 +84,7 @@ function Home() {
         <CarouselPrevious />
       </Carousel>
       <Category />
+      <MidBanner />
     </main>
   );
 }
