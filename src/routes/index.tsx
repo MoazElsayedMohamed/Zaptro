@@ -57,7 +57,11 @@ function Home() {
                         <p className="text-gray-400 md:w-125 line-clamp-3 pr-7">
                           {product.description}
                         </p>
-                        <Button variant="destructive" className="mt-2">
+                        <Button
+                          variant="destructive"
+                          size="lg"
+                          className="mt-2"
+                        >
                           Shop Now
                         </Button>
                       </div>
