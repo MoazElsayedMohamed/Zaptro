@@ -1,4 +1,5 @@
 // src/routes/index.tsx
+import Category from "@/components/Category";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -8,17 +9,17 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { DataContext } from "@/context/DataContext";
+import { useDataContext } from "@/context/DataContext";
 import { createFileRoute } from "@tanstack/react-router";
 import Autoplay from "embla-carousel-autoplay";
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 
 export const Route = createFileRoute("/")({
   component: Home,
 });
 
 function Home() {
-  const context = useContext(DataContext);
+  const context = useDataContext();
 
   if (!context) {
     return <div>Error: DataContext not available</div>;
@@ -31,54 +32,57 @@ function Home() {
   }, []);
 
   return (
-    <Carousel
-      plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
-      ]}
-    >
-      <CarouselContent>
-        {Array.isArray(data) &&
-          data.length > 0 &&
-          data.slice(0, 7).map((product) => {
-            return (
-              <CarouselItem key={product.slug}>
-                <div>
-                  <Card className="bg-linear-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] w-full">
-                    <CardContent className="flex gap-10 justify-center items-center h-150 px-4">
-                      <div className="space-y-6">
-                        <h3 className="text-red-500 font-semibold font-sans text-sm">
-                          Powering Your World with the Best Clothes
-                        </h3>
-                        <h1 className="font-bold text-4xl line-clamp-3 uppercase md:w-125 text-white">
-                          {product.title}
-                        </h1>
-                        <p className="text-gray-400 md:w-125 line-clamp-3 pr-7">
-                          {product.description}
-                        </p>
-                        <Button
-                          variant="destructive"
-                          size="lg"
-                          className="mt-2"
-                        >
-                          Shop Now
-                        </Button>
-                      </div>
-                      <img
-                        src={product.images[1]}
-                        alt="product image"
-                        className="rounded-full w-137.5 hover:scale-110 transition-all shadow-2xl shadow-red-400"
-                      />
-                    </CardContent>
-                  </Card>
-                </div>
-              </CarouselItem>
-            );
-          })}
-      </CarouselContent>
-      <CarouselNext />
-      <CarouselPrevious />
-    </Carousel>
+    <main>
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 2000,
+          }),
+        ]}
+      >
+        <CarouselContent>
+          {Array.isArray(data) &&
+            data.length > 0 &&
+            data.slice(0, 7).map((product) => {
+              return (
+                <CarouselItem key={product.slug}>
+                  <div>
+                    <Card className="bg-linear-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] w-full">
+                      <CardContent className="flex gap-10 justify-center items-center h-150 px-4">
+                        <div className="space-y-6">
+                          <h3 className="text-red-500 font-semibold font-sans text-sm">
+                            Powering Your World with the Best Clothes
+                          </h3>
+                          <h1 className="font-bold text-4xl line-clamp-3 uppercase md:w-125 text-white">
+                            {product.title}
+                          </h1>
+                          <p className="text-gray-400 md:w-125 line-clamp-3 pr-7">
+                            {product.description}
+                          </p>
+                          <Button
+                            variant="destructive"
+                            size="lg"
+                            className="mt-2"
+                          >
+                            Shop Now
+                          </Button>
+                        </div>
+                        <img
+                          src={product.image}
+                          alt="product image"
+                          className="rounded-full w-137.5 h-137.5 hover:scale-110 transition-all shadow-2xl shadow-red-400"
+                        />
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              );
+            })}
+        </CarouselContent>
+        <CarouselNext />
+        <CarouselPrevious />
+      </Carousel>
+      <Category />
+    </main>
   );
 }

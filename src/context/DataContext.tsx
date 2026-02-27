@@ -1,4 +1,4 @@
-import { createContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
 interface DataContextType {
   data: Props | undefined;
@@ -10,20 +10,14 @@ type DataProviderProps = {
   children: ReactNode;
 };
 
-type Props = {
-  length: number;
-  data: {
-    title: string;
-    slug: string;
-    price: number;
-    description: string;
-    category: {
-      name: string;
-      image: string;
-    };
-    images: string[];
-  }[];
-};
+export type Props = {
+  title: string;
+  slug: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+}[];
 
 export const DataContext = createContext<DataContextType | null>(null);
 
@@ -32,7 +26,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
 
   const fetchAllProducts = async () => {
     try {
-      const response = await fetch("https://api.escuelajs.co/api/v1/products");
+      const response = await fetch("https://fakestoreapi.com/products");
       const products = await response.json();
       setData(products);
     } catch (error) {
@@ -46,3 +40,5 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     </DataContext.Provider>
   );
 };
+
+export const useDataContext = () => useContext(DataContext);
