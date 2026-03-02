@@ -1,4 +1,5 @@
 // src/routes/__root.tsx
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
@@ -40,6 +41,7 @@ function RootComponent() {
     <>
       <Navbar location={location} getLocation={getLocation} />
       <Outlet /> {/* child routes render here */}
+      <Footer />
       <TanStackRouterDevtools />
     </>
   );

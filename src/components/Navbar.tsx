@@ -24,7 +24,7 @@ const Navbar = ({
   getLocation: any;
 }) => {
   return (
-    <div className="bg-white py-3 shadow-2xl">
+    <header className="bg-white py-3 shadow-2xl">
       <div className="max-w-6xl mx-auto flex justify-between items-center">
         <div className="flex gap-7 items-center">
           <Link to="/">
@@ -112,7 +112,7 @@ const Navbar = ({
           </div>
         </nav>
       </div>
-    </div>
+    </header>
   );
 };
 
