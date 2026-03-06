@@ -4,6 +4,7 @@ interface DataContextType {
   data: Props | undefined;
   setData: React.Dispatch<React.SetStateAction<Props | undefined>>;
   fetchAllProducts: () => Promise<void>;
+  uniqueCategory: string[];
 }
 
 type DataProviderProps = {
@@ -34,8 +35,20 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     }
   };
 
+  const getUniqueCategory = (
+    data: Props | undefined,
+    property: keyof Props[number],
+  ) => {
+    if (!data) return [];
+    let newVal = data.map((item) => item[property]);
+    newVal = ["ALL", ...new Set(newVal)];
+    return newVal;
+  };
+  const uniqueCategory = getUniqueCategory(data, "category") as string[];
   return (
-    <DataContext.Provider value={{ data, setData, fetchAllProducts }}>
+    <DataContext.Provider
+      value={{ data, setData, fetchAllProducts, uniqueCategory }}
+    >
       {children}
     </DataContext.Provider>
   );
