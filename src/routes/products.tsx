@@ -1,13 +1,10 @@
 import FilterSection from "@/components/FilterSection";
 import ProductCard from "@/components/ProductCard";
-import { Button } from "@/components/ui/button";
 import {
   Empty,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-  EmptyDescription,
-  EmptyContent,
 } from "@/components/ui/empty";
 import { Spinner } from "@/components/ui/spinner";
 import { useDataContext } from "@/context/DataContext";
